@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhà thuốc</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+    <div class="sidebar" id="sidebar">
+        <!-- Fragment SideBar -->
+    </div>
+    <div class="main">
+        <div class="main_header" id="header">
+            <!-- FragmentHeader -->
+        </div>
+        <div class="content">
+            <div class="wrap-table">
+                <div class="wrap-table_filter">
+                    <input type="text" placeholder="Nhập tên nhân viên">
+                    <button>Thêm nhân viên</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã nhân viên</th>
+                            <th>Tên </th>
+                            <th>Số điện thoại</th>
+                            <th>Địa chỉ</th>
+                            <th>Giới tính</th>
+                            <th>Ngày sinh</th>
+                            <th>Ca làm việc</th>
+                            <th>Thực hiện</th>
+                        </tr>
+                    </thead>
+                    <tbody id="getAll">
+                        <!-- Load Nhân viên -->
+                    </tbody>
+
+                </table>
+                <div id="paginationContainer">
+                    <!-- Phân trang sẽ được thêm vào đây -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/assets/js/fragment.js"></script>
+    <script src="/assets/js-load-data/nhanVien.js"></script>
+</body>
+
+</html>

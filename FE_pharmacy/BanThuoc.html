@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bán thuốc</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/BanThuoc.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+</head>
+
+<body>
+    <div class="sidebar" id="sidebar">
+        <!-- Fragment SideBar -->
+    </div>
+    <div class="main">
+        <div class="main_header" id="header">
+            <!-- FragmentHeader -->
+        </div>
+        <div class="content">
+            <div class="wrap-table">
+                <div class="tabs">
+                    <!-- Tab buttons -->
+                    <div class="tab-buttons">
+                        <button class="tab-button active" data-tab="tab1">Lập hóa đơn kê đơn</button>
+                        <button class="tab-button" data-tab="tab2">Lập hóa đơn không kê đơn</button>
+
+                    </div>
+                    <!-- Tab content -->
+                    <div class="tab-contents">
+                        <div id="tab1" class="tab-content active">
+                            <div class="customer-section">
+                                <!-- Thông tin khách hàng -->
+                                <div class="customer-info">
+                                    <h3>Thông tin khách hàng</h3>
+                                    <div class="input-group">
+                                        <label for="customer-name">Tên</label>
+                                        <input type="text" id="customer-name" placeholder="Trần Thị Tường Vy">
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="customer-phone">Số điện thoại</label>
+                                        <input type="text" id="customer-phone" placeholder="0363454928">
+                                    </div>
+                                    <button class="delete-btn">Xóa thông tin nhập</button>
+                                </div>
+
+                                <div class="prescription-info">
+                                    <h3>Thông tin nơi cấp đơn thuốc</h3>
+                                    <div class="input-group">
+                                        <label for="location">Nơi khám</label>
+                                        <input type="text" id="location">
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="exam-paper">Phiếu khám</label>
+                                        <input type="text" id="exam-paper">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab2" class="tab-content">
+                            <div class="customer-section">
+                                <!-- Thông tin khách hàng -->
+                                <div class="customer-info">
+                                    <h3>Thông tin khách hàng</h3>
+                                    <div class="input-group">
+                                        <label for="customer-name">Tên</label>
+                                        <input type="text" id="customer-name" placeholder="Trần Thị Tường Vy">
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="customer-phone">Số điện thoại</label>
+                                        <input type="text" id="customer-phone" placeholder="0363454928">
+                                    </div>
+                                    <button class="delete-btn">Xóa thông tin nhập</button>
+                                </div>
+
+                                <div class="info">
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="container">
+                    <!-- Bảng thuốc -->
+                    <div class="medicine-section">
+                        <div class="wrap-table_filter">
+                            <input type="text" placeholder="Tìm ca làm việc">
+                            <select id="workShift" name="workShift">
+                                <option value="" disabled selected>-- Chọn ca làm việc --</option>
+                                <option value="morning">Ca sáng</option>
+                                <option value="afternoon">Ca chiều</option>
+                                <option value="night">Ca tối</option>
+                            </select>
+                        </div>
+                        <table class="medicine-table">
+                            <thead>
+                                <tr>
+                                    <th>Mã thuốc</th>
+                                    <th>Tên thuốc</th>
+                                    <th>Thuốc kê đơn</th>
+                                    <th>Đơn vị tính</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>30046</td>
+                                    <td>Thuốc Siloxogene RPG điều trị chứng tăng tiết acid dạ dày (100 viên)</td>
+                                    <td><i class="fa-solid fa-check" style="color: green;"></i></td>
+                                    <td>Hộp</td>
+                                    <td>2</td>
+                                    <td>260.000 đ</td>
+                                    <td>
+                                        <i class="fa-solid fa-circle-minus" style="color: red;"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>30039</td>
+                                    <td>Thuốc Deferiprone A.T 500mg An Thiên hỗ trợ điều trị nhiễm Hemosiderin (3 vỉ x
+                                        10 viên)</td>
+                                    <td><i class="fa-solid fa-xmark" style="color: red;"></i></i></td>
+                                    <td>Hộp</td>
+                                    <td>1</td>
+                                    <td>230.000 đ</td>
+                                    <td>
+                                        <i class="fa-solid fa-circle-minus" style="color: red;"></i>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5" style="text-align: right;">Tổng tiền:</td>
+                                    <td>490.000 đ</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                    <button class="create-bill-btn">Tạo Hóa Đơn</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/assets/js/fragment.js"></script>
+    <script src="/assets/js/tab.js"></script>
+</body>
+
+</html>

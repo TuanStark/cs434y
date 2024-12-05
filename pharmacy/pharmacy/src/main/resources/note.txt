@@ -1,0 +1,4 @@
+TypeInvoice
+1 -> ImportInvoice
+2 -> SaleInvoice
+3 -> DisposalInvoice
