@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 public interface TypeMedicineService {
     TypeMedicineResponse createType(TypeMedicineRequest request);
     TypeMedicineResponse updateType(Long id,TypeMedicineRequest request);
+    TypeMedicineResponse getTypeById(Long id);
     void deleteType(Long id);
     PageResponse<TypeMedicineResponse> getAllType(int page, int size);
 

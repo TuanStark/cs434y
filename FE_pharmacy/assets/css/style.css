@@ -6,9 +6,27 @@ body {
     background-color: #ecf0f1;
 
 }
+input[readonly] {
+    background-color: #f5f5f5; 
+    cursor: not-allowed;    
+}
+select[readonly] {
+    background-color: #f5f5f5; 
+    pointer-events: none;     
+    cursor: not-allowed;     
+}
+
 .main{
     position: relative;
     left: 277px;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+.btn{
+    white-space: nowrap;
+    height: fit-content;
 }
 .main_header{
     padding-left: 20px;
@@ -18,8 +36,8 @@ body {
 }
 
 .sidebar {
-    width: 230px;
-    height: 90vh; 
+    width: 238px;
+    height: 100%; 
     background-color: #2c3e50;
     color: #ecf0f1;
     display: flex;
@@ -88,7 +106,7 @@ header {
 
 }
 
-.wrap-table_filter input, select {
+.wrap-table_filter .find, select {
     padding: 10px;
     margin-right: 10px;
     border-radius: 5px;
@@ -104,6 +122,8 @@ header {
     border-radius: 5px;
     cursor: pointer;
 }
+
+
 header{
     border-radius: 10px;
 }
@@ -173,7 +193,7 @@ table .btn-delete {
     width: 940px;
 }
 
-.wrap-table_filter input {
+.wrap-table_filter .find {
     width: 300px;
 }
 
@@ -245,7 +265,7 @@ a{
     position: absolute;
     width: 125px;
     top: 100%; 
-    left: -80px;
+    left: -120px;
     background-color: white;
     border: 1px solid #ccc;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -304,7 +324,7 @@ a{
     -webkit-line-clamp: 2;
     overflow: hidden; 
     text-overflow: ellipsis; 
-    line-height: 1.7em; 
+    line-height: 1.2em; 
     max-height: 3em; 
     word-wrap: break-word; 
     white-space: normal; 
@@ -355,6 +375,52 @@ a{
     background-color: #007bff;
     border-color: #007bff;
 }
+/* Pop up */
+.mb-3{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px !important;
+}
+.input-form{
+    height: 25px;
+    margin-left: 6px ;
+}
+.col-form-label{
+    font-size: 13px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+.form-control{
+    width: 70%;
+}
+.form-group{
 
+    display: flex;
+}
 
+.form-select{
+    height: 27px;
+    margin-left: 79px;
+    font-size: 10px;
+    width: 100px;
+}
+.mb-3-1{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 5px !important;
+}
+input {
+    font-size: 13px;
+}
+.cb-gender{
+    width: 100%;
+    margin-right: 0;
+}
 
+.main_block{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

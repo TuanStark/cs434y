@@ -20,7 +20,7 @@ public class WorkShiftController {
     WorkShiftService workShiftService;
 
     @PostMapping("/create")
-    public ResponseObject<WorkShiftResponse> create(@RequestBody WorkShiftRequest request){
+    public ResponseObject<WorkShiftResponse> create(@ModelAttribute WorkShiftRequest request){
         WorkShiftResponse data = workShiftService.createWorkShift(request);
         return ResponseObject.<WorkShiftResponse>builder()
                 .data(data)
@@ -42,7 +42,7 @@ public class WorkShiftController {
                 .build();
     }
     @PutMapping("/update/{id}")
-    public ResponseObject<WorkShiftResponse> update(@PathVariable Long id,@RequestBody WorkShiftRequest request){
+    public ResponseObject<WorkShiftResponse> update(@PathVariable Long id,@ModelAttribute WorkShiftRequest request){
         WorkShiftResponse data = workShiftService.updateWorkShift(id, request);
         return ResponseObject.<WorkShiftResponse>builder()
                 .data(data)
@@ -59,5 +59,13 @@ public class WorkShiftController {
                 .message("SUCCESS")
                 .build();
     }
-
+    @GetMapping("/getById/{id}")
+    public ResponseObject<WorkShiftResponse> getById(@PathVariable Long id){
+        WorkShiftResponse response = workShiftService.getByIdWorkShift(id);
+        return ResponseObject.<WorkShiftResponse>builder()
+                .data(response)
+                .code(200)
+                .message("SUCCESS")
+                .build();
+    }
 }

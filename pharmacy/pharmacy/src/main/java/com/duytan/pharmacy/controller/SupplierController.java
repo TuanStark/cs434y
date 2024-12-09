@@ -21,7 +21,7 @@ public class SupplierController {
     SupplierService supplierService;
 
     @PostMapping("/create")
-    public ResponseObject<SupplierResponse> create(@RequestBody SupplierRequest request){
+    public ResponseObject<SupplierResponse> create(@ModelAttribute SupplierRequest request){
         SupplierResponse data = supplierService.createSupplier(request);
         return ResponseObject.<SupplierResponse>builder()
                 .data(data)
@@ -44,7 +44,7 @@ public class SupplierController {
                 .build();
     }
     @PutMapping("/update/{id}")
-    public ResponseObject<SupplierResponse> update(@PathVariable Long id,@RequestBody SupplierRequest request){
+    public ResponseObject<SupplierResponse> update(@PathVariable Long id,@ModelAttribute SupplierRequest request){
         SupplierResponse data = supplierService.updateSupplier(id, request);
         return ResponseObject.<SupplierResponse>builder()
                 .data(data)

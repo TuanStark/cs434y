@@ -21,5 +21,5 @@ public class AccountResponse {
     String password;
     boolean status;
     String roleName;
-    String nameWorkShift;
+    Long idWorkShift;
 }

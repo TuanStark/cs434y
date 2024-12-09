@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nhà thuốc</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+        integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
@@ -20,7 +23,100 @@
         <div class="content">
             <div class="wrap-table">
                 <div class="wrap-table_filter">
-                    <input type="text" placeholder="Nhập tên hoặc số điện thoại khách hàng">
+                    <input class="find" type="text" placeholder="Nhập tên hoặc số điện thoại khách hàng">
+                    <!-- Start PopUp -->
+                    <button type="button" style="background-color: red;">Tạo hóa đơn hủy thuốc</button>
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog modal-lg">
+                            <div class="modal-content ">
+                                <div class="modal-header">
+                                    <h5 style="font-weight: bold;" class="modal-title" id="title"
+                                        style="color: rgb(70, 67, 235);">Xem thông tin hóa đơn thuốc
+                                    </h5>
+                                    <button type="button" class="btn-close" style="background-color: red; color: black;"
+                                        data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="main_block">
+                                            <div class="block">
+                                                <div class="mb-3" style="justify-content: flex-start;">
+                                                    <label for="recipient-name" class="col-form-label">Tên khách
+                                                        hàng:</label>
+                                                    <span id="nameCustomer" style="margin-left: 15px;"></span>
+                                                </div>
+                                                <div class="mb-3" style="justify-content: flex-start;">
+                                                    <label for="message-text" class="col-form-label">Số điện
+                                                        thoại:</label>
+                                                    <span id="phone" style="margin-left: 15px;"></span>
+                                                </div>
+                                                <div class="mb-3" style="justify-content: flex-start;">
+                                                    <label for="message-text" class="col-form-label">Nhân viên bán
+                                                        hàng:</label>
+                                                    <span id="nameAccount" style="margin-left: 15px;"></span>
+                                                </div>
+                                                <div class="mb-3" style="justify-content: flex-start;">
+                                                    <label for="message-text" class="col-form-label">Ngày tạo:</label>
+                                                    <span id="invoiceDate" style="margin-left: 15px;"></span>
+                                                </div>
+                                                <div class="mb-3" style="justify-content: flex-start;">
+                                                    <label for="message-text" class="col-form-label">Loại hóa
+                                                        đơn:</label>
+                                                    <span id="typeInvoice" style="margin-left: 15px;"></span>
+                                                </div>
+                                            </div>
+                                            <div class="block">
+                                                <div class="mb-3" style="justify-content: flex-start;">
+                                                    <label for="recipient-name" class="col-form-label">Mã hóa
+                                                        đơn:</label>
+                                                    <span id="invoiceCode" style="margin-left: 15px;"></span>
+                                                </div>
+                                                <div class="mb-3" style="justify-content: flex-start;">
+                                                    <label for="message-text" class="col-form-label">Nơi khám:</label>
+                                                    <span id="location" style="margin-left: 15px;"></span>
+                                                </div>
+                                                <div class="mb-3" style="justify-content: flex-start;">
+                                                    <label for="message-text" class="col-form-label">Phiếu khám:</label>
+                                                    <span id="examCode" style="margin-left: 15px;"></span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Mã thuốc</th>
+                                                    <th>Tên thuốc</th>
+                                                    <th>Thuốc kê đơn</th>
+                                                    <th>Đơn vị tính</th>
+                                                    <th>Số lượng</th>
+                                                    <th>Thành tiền</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="getAllDetail">
+                                                <!-- Load hóa đơn -->
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="5" style="text-align: right;">Tổng tiền:</td>
+                                                    <td id="totalPrice1">0</td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </form>
+                                </div>
+                                <div class="modal-footer" id="btnOption">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                        style="color: white; background-color: red;">Thoát</button>
+                                    <button type="button" class="btn btn-primary" id="btnSave"
+                                        style="background-color: aqua; color: black;">Lưu</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Popup -->
                 </div>
                 <table>
                     <thead>
@@ -31,72 +127,16 @@
                             <th>Ngày tạo hoá đơn</th>
                             <th>Mã phiếu khám</th>
                             <th>Nơi khám</th>
-                            <th>Hoá đơn kê thuốc</th>
                             <th>Thực hiện</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>HD001</td>
-                            <td>Nguyễn Ái Tố Như</td>
-                            <td>17/8/2024</td>
-                            <td>BNGV0001</td>
-                            <td>Bệnh viện Gò Vấp</td>
-                            <td><i class="fas fa-check text-success"></i></td>
-                            <td>
-                                <button class="btn-detail">Xem Chi Tiết</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>HD001</td>
-                            <td>Nguyễn Hoàng Phúc Liêm</td>
-                            <td>17/8/2024</td>
-                            <td><i class="fas fa-ellipsis-h text-danger"></i></td>
-                            <td><i class="fas fa-ellipsis-h text-danger"></i></td>
-                            <td><i class="fas fa-times text-danger"></i></td>
-                            <td>
-                                <button class="btn-detail">Xem Chi Tiết</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>HD001</td>
-                            <td>Nguyễn Ái Tố Như</td>
-                            <td>17/8/2024</td>
-                            <td><i class="fas fa-ellipsis-h text-danger"></i></td>
-                            <td><i class="fas fa-ellipsis-h text-danger"></i></td>
-                            <td><i class="fas fa-check text-success"></i></td>
-                            <td>
-                                <button class="btn-detail">Xem Chi Tiết</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>HD001</td>
-                            <td>Trương Thị Tường Vy</td>
-                            <td>17/8/2024</td>
-                            <td>BNGV0301</td>
-                            <td>Bệnh viện Gò Vấp</td>
-                            <td><i class="fas fa-check text-success"></i></td>
-                            <td>
-                                <button class="btn-detail">Xem Chi Tiết</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Nguyễn Thị Tố My</td>
-                            <td>17/8/2024</td>
-                            <td><i class="fas fa-ellipsis-h text-danger"></i></td>
-                            <td><i class="fas fa-ellipsis-h text-danger"></i></td>
-                            <td><i class="fas fa-times text-danger"></i></td>
-                            <td>
-                                <button class="btn-detail">Xem Chi Tiết</button>
-                            </td>
-                        </tr>
+                    <tbody id="getAll">
+                        <!-- Load hóa đơn -->
                     </tbody>
                 </table>
+                <div id="paginationContainer">
+                    <!-- Phân trang sẽ được thêm vào đây -->
+                </div>
             </div>
         </div>
     </div>
@@ -104,7 +144,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"
+        integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="/assets/js/fragment.js"></script>
+    <script src="/assets/js-load-data/hoaDon.js"></script>
 </body>
 
 </html>

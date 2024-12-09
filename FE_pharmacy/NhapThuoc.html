@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/assets/css/NhapThuoc.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <title>Nhập Thuốc</title>
+</head>
+
+<body>
+  <div class="container">
+    <h2 class="title">Nhập Thuốc</h2>
+    <form class="form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="soLuong">Số lượng</label>
+          <input type="number" id="soLuong" value="1" min="0" step="1">
+        </div>
+        <div class="form-group">
+          <label for="giaNhap">Giá Nhập</label>
+          <input type="number" id="giaNhap" value="1000">
+        </div>
+        <div class="form-group">
+          <label for="giaBanSi">Giá bán sỉ (VND)</label>
+          <input type="number" id="giaBanSi" value="1000">
+        </div>
+        <div class="form-group">
+          <label for="giaBanLe">Giá bán lẻ (VND)</label>
+          <input type="number" id="giaBanLe" value="1000">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="soLo">Số Lô</label>
+          <input type="text" id="soLo">
+        </div>
+        <div class="form-group">
+          <label for="ngaySanXuat">Ngày sản xuất</label>
+          <input type="date" id="ngaySanXuat" value="2023-04-13">
+        </div>
+        <div class="form-group">
+          <label for="ngayHetHan">Ngày hết hạn</label>
+          <input type="date" id="ngayHetHan" value="2023-06-13">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="ngayNhapThuoc">Ngày nhập thuốc</label>
+          <input type="date" id="ngayNhapThuoc" value="2023-05-13">
+        </div>
+        <div class="form-group">
+          <label for="nhaCungCap">Nhà Cung Cấp</label>
+          <select id="nhaCungCap">
+            <option>Ái Châu</option>
+            <option>Tâm Bình</option>
+            <option>...</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="noiSanXuat">Nơi Sản Xuất</label>
+          <select id="noiSanXuat">
+            <option>Tổng Công ty Dược Việt Nam</option>
+            <option>Công ty Cổ phần Dược Hậu Giang</option>
+            <option>...</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn red">Hủy</button>
+        <button type="submit" class="btn blue">Nhập thuốc</button>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>

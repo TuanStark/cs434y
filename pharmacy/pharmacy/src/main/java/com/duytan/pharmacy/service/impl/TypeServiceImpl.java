@@ -47,6 +47,13 @@ public class TypeServiceImpl implements TypeMedicineService {
     }
 
     @Override
+    public TypeMedicineResponse getTypeById(Long id) {
+        TypeMedicine type = typeMedicineRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Not found type"));
+        return typeMapper.toTypeMedicineResponse(type);
+    }
+
+    @Override
     @Transactional
     public void deleteType(Long id) {
         TypeMedicine type = typeMedicineRepository.findById(id)

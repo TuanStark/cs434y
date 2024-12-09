@@ -21,7 +21,7 @@ public class TypeController {
     TypeMedicineService typeMedicineService;
 
     @PostMapping("/create")
-    public ResponseObject<TypeMedicineResponse> create(@RequestBody TypeMedicineRequest request){
+    public ResponseObject<TypeMedicineResponse> create(@ModelAttribute TypeMedicineRequest request){
         TypeMedicineResponse data = typeMedicineService.createType(request);
         return ResponseObject.<TypeMedicineResponse>builder()
                 .data(data)
@@ -43,7 +43,7 @@ public class TypeController {
                 .build();
     }
     @PutMapping("/update/{id}")
-    public ResponseObject<TypeMedicineResponse> update(@PathVariable Long id,@RequestBody TypeMedicineRequest request){
+    public ResponseObject<TypeMedicineResponse> update(@PathVariable Long id,@ModelAttribute TypeMedicineRequest request){
         TypeMedicineResponse data = typeMedicineService.updateType(id, request);
         return ResponseObject.<TypeMedicineResponse>builder()
                 .data(data)
@@ -58,6 +58,16 @@ public class TypeController {
         return ResponseObject.<Void>builder()
                 .code(200)
                 .message("SUCCESS")
+                .build();
+    }
+
+    @GetMapping("/getById/{id}")
+    public ResponseObject<TypeMedicineResponse> getbyId(@PathVariable Long id){
+        TypeMedicineResponse response = typeMedicineService.getTypeById(id);
+        return ResponseObject.<TypeMedicineResponse>builder()
+                .code(200)
+                .message("SUCCESS")
+                .data(response)
                 .build();
     }
 

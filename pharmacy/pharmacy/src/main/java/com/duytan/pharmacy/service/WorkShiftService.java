@@ -11,4 +11,5 @@ public interface WorkShiftService {
     WorkShiftResponse updateWorkShift(Long id,WorkShiftRequest request);
     void deleteWorkShift(Long id);
     PageResponse<WorkShiftResponse> getAllWorkShift(int page, int size);
+    WorkShiftResponse getByIdWorkShift(Long id);
 }

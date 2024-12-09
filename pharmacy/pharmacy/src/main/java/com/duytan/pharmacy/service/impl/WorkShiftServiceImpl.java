@@ -71,4 +71,11 @@ public class WorkShiftServiceImpl implements WorkShiftService {
                 .build();
     }
 
+    @Override
+    public WorkShiftResponse getByIdWorkShift(Long id) {
+        WorkShift workShift = workShiftRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Not found WorkShift"));
+        return workShiftMapper.toWorkShiftResponse(workShift);
+    }
+
 }

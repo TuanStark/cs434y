@@ -37,8 +37,9 @@ $(document).ready(function () {
                             <td>${value.name}</td>
                             <td class="long_text-v2">${value.description}</td>
                             <td>
-                                <button class="btn-edit">Chỉnh Sửa</button>
-                                <button class="btn-delete">Xóa</button>
+                                <a class="btn btn-warning" data-id="${value.id}" id="btnEdit" data-action="view" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        data-bs-whatever="@mdo">Chỉnh Sửa</a>
+                                <a class="btn btn-danger" data-id="${value.id}" id="btnDelete" >Xóa</a>
                             </td>
                         </tr>`;
                         $("#getAll").append(html);
@@ -84,4 +85,109 @@ $(document).ready(function () {
                 console.error("Error:", textStatus, errorThrown);
             });
     }
+
+    $(document).on('click', '#btnEdit', function (e) {
+        e.preventDefault();
+        $('#title').text('Cập nhật loại thuốc');
+
+        var id = $(this).data("id");
+        $('#hiddenId').val(id);
+
+        //console.log('id = ' + id);
+        var baseUrl = 'http://localhost:1122/type';
+        $.ajax({
+            method: 'GET',
+            url: `${baseUrl}/getById/${id}`,
+            success: function (response) {
+                $('#nameType').val(response.data.name);
+                $('#description').val(response.data.description);
+            },
+            error: function (xhr, status, error) {
+                alert('Không thể lấy thông tin danh mục');
+                console.error('Error:', xhr.responseText, status, error);
+            }
+        });
+    });
+
+    // Thêm hoặc cập nhật 
+    $('#btnSave').click(function (event) {
+        event.preventDefault();
+
+        var id = $('#hiddenId').val();
+        // var idLong = BigInt(id);
+        console.log('id = ' + id);
+        var name = $('#nameType').val();
+        var description = $('#description').val();
+        var baseUrl = 'http://localhost:1122/type';
+
+        if (!name || name.trim() === '') {
+            alert('Vui lòng nhập tên loại thuốc.');
+            return;
+        }
+
+        if (!description || description.trim() === '') {
+            alert('Vui lòng nhập mô tả.');
+            return;
+        }
+
+        if (id === '') {
+            $.ajax({
+                method: 'POST',
+                url: `${baseUrl}/create`,
+                data: { name, description },
+                success: function (response) {
+                    alert('Thêm thành công');
+                    resetForm();
+                    $('#exampleModal').modal('hide');
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    alert('Thêm thất bại');
+                    console.error('Error:', xhr.responseText, status, error);
+                }
+            });
+        } else {
+            $.ajax({
+                method: 'PUT',
+                url: `${baseUrl}/update/${id}`,
+                data: { name, description },
+                success: function (response) {
+                    alert('Cập nhật thành công');
+                    resetForm();
+                    $('#exampleModal').modal('hide');
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    alert('Cập nhật thất bại');
+                    console.error('Error:', xhr.responseText, status, error);
+                }
+            });
+        }
+    });
+
+
+    function resetForm() {
+        $('#hiddenId').val('');
+        $('#nameType').val('');
+        $('#description').val('');
+    }
+
+    // xóa 
+    $(document).on('click', '#btnDelete', function (e) {
+        e.preventDefault();
+        var id = $(this).data("id");
+        if (confirm("Bạn có chắc chắn muốn xóa không?")) {
+            $.ajax({
+                method: "DELETE",
+                url: `http://localhost:1122/type/delete/${id}`,
+            })
+                .done(function (msg) {
+                    alert("Đã xóa thành công!");
+                    loadPage(1);
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    console.error("Error:", textStatus, errorThrown);
+                });
+        }
+    });
 });

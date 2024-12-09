@@ -94,7 +94,7 @@ public class AccountServiceImpl implements AccountService {
     public AccountResponse convertToAccountResponse(Account account){
         AccountResponse response = accountMapper.toAccountResponse(account);
         response.setRoleName(account.getRole().getName());
-        response.setNameWorkShift(account.getWorkShift().getName());
+        response.setIdWorkShift(account.getWorkShift().getId());
         return response;
     }
 }

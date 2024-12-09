@@ -1,0 +1,35 @@
+.search-container {
+    position: relative;
+    width: 300px;
+}
+
+.find {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.suggestions {
+    border-radius: 10px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none; /* Ẩn danh sách mặc định */
+    z-index: 10;
+}
+
+.suggestions li {
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.suggestions li:hover {
+    background-color: #f0f0f0;
+}

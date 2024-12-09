@@ -7,6 +7,10 @@
     <title>Nhà thuốc</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+        integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
@@ -20,8 +24,85 @@
         <div class="content">
             <div class="wrap-table">
                 <div class="wrap-table_filter">
-                    <input type="text" placeholder="Nhập tên nhân viên">
-                    <button>Thêm nhân viên</button>
+                    <input class="find" type="text" placeholder="Nhập tên nhân viên">
+
+                    <!-- Start PopUp -->
+                    <button type="button" id="btnAdd" data-action="add" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" data-bs-whatever="@mdo">Thêm nhân viên</button>
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 style="font-weight: bold;" class="modal-title" id="title"
+                                        style="color: rgb(70, 67, 235);">Thêm nhân viên
+                                    </h5>
+                                    <button type="button" class="btn-close" style="background-color: red; color: black;"
+                                        data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="mb-3">
+                                            <label for="recipient-name" class="col-form-label">Họ & tên:</label>
+                                            <input type="text" class="form-control input-form" id="fullName1" />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="message-text" class="col-form-label">Điện thoại:</label>
+                                            <input type="text" class="form-control input-form" id="phone">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="mb-3">
+                                                <label for="message-text" class="col-form-label">Giới tính:</label>
+                                                <select id="cbSex" class="form-select"
+                                                    aria-label="Default select example">
+                                                    <option value="1">Nam</option>
+                                                    <option value="0">Nữ</option>
+                                                    <!-- <option value="2">Khác</option> -->
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="message-text" class="col-form-label">Ngày Sinh:</label>
+                                                <input type="text" class="form-control input-form" id="dateOfBirth"
+                                                    placeholder="yyyy-MM-dd">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="recipient-name" class="col-form-label">Địa chỉ:</label>
+                                            <input type="text" class="form-control input-form" id="address">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="recipient-name" class="col-form-label">Tên đăng nhập:</label>
+                                            <input type="text" class="form-control input-form" id="username">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="recipient-name" class="col-form-label">Mật khẩu:</label>
+                                            <input type="text" class="form-control input-form" id="password">
+                                        </div>
+                                        <div class="mb-3-1">
+                                            <label for="message-text" class="col-form-label">Ca làm việc:</label>
+                                            <select id="cbWorkShift" class="form-select"
+                                                aria-label="Default select example">
+                                                <option value="1">Ca sáng</option>
+                                                <option value="2">Ca chiều</option>
+                                                <option value="3">Ca tối</option>
+                                            </select>
+
+                                        </div>
+                                        <input type="hidden" id="hiddenId">
+                                    </form>
+                                </div>
+                                <div class="modal-footer" id="btnOption">
+                                    <button type="button" class="btn btn-secondary" id="btnClose"
+                                        data-bs-dismiss="modal"
+                                        style="color: white; background-color: red;">Thoát</button>
+                                    <button type="button" class="btn btn-primary" id="btnSave"
+                                        style="background-color: aqua; color: black;">Lưu</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Popup -->
                 </div>
                 <table>
                     <thead>
@@ -32,7 +113,7 @@
                             <th>Địa chỉ</th>
                             <th>Giới tính</th>
                             <th>Ngày sinh</th>
-                            <th>Ca làm việc</th>
+                            <!-- <th>Ca làm việc</th> -->
                             <th>Thực hiện</th>
                         </tr>
                     </thead>
@@ -53,6 +134,9 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="/assets/js/fragment.js"></script>
     <script src="/assets/js-load-data/nhanVien.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"
+        integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 
 </html>

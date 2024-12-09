@@ -37,8 +37,9 @@ $(document).ready(function () {
                             <td>${value.name}</td>
                             <td>${value.time}</td>
                             <td>
-                                <button class="btn-edit">Chỉnh Sửa</button>
-                                <button class="btn-delete">Xóa</button>
+                                <a data-id="${value.id}" id="btnEdit" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        data-bs-whatever="@mdo">Chỉnh Sửa</a>
+                                <a data-id="${value.id}" id="btnDelete" class="btn btn-danger">Xóa</a>
                             </td>
                         </tr>`;
                         $("#getAll").append(html);
@@ -84,4 +85,128 @@ $(document).ready(function () {
                 console.error("Error:", textStatus, errorThrown);
             });
     }
+
+    $(document).on('click', '#btnAdd', function (e) {
+        //e.preventDefault();
+        resetForm();
+    })
+    function resetForm() {
+        $('#hiddenId').val('');
+        $('#nameWorkShift').val('');
+        $('#time').val('');
+
+    }
+
+    $(document).on('click', '#btnEdit', function (e) {
+        e.preventDefault();
+        $('#title').text('Cập nhật ca làm việc');
+        var id = $(this).data("id");
+        $('#hiddenId').val(id);
+        //console.log('id = ' + id);
+        var baseUrl = 'http://localhost:1122/ws';
+        $.ajax({
+            method: 'GET',
+            url: `${baseUrl}/getById/${id}`,
+            success: function (response) {
+                $('#nameWorkShift').val(response.data.name);
+                $('#time').val(response.data.time);
+            },
+            error: function (xhr, status, error) {
+                alert('Không thể lấy thông tin danh mục');
+                console.error('Error:', xhr.responseText, status, error);
+            }
+        });
+    });
+
+    // Thêm hoặc cập nhật ca làm việc
+    $('#btnSave').click(function (event) {
+        event.preventDefault();
+
+        var id = $('#hiddenId').val();
+        //console.log('ID hiện tại: ' + id);
+        var name = $('#nameWorkShift').val();
+        var time = $('#time').val();
+        var baseUrl = 'http://localhost:1122/ws';
+
+        if (!id || id.trim() === '') {
+            $.ajax({
+                method: 'POST',
+                url: `${baseUrl}/create`,
+                data: { name: name, time: time },
+                success: function (response) {
+                    // showToast('Thêm thành công!', 'success');
+                    alert('Thêm thành công')
+                    resetForm();
+                    $('#exampleModal').modal('hide');
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    alert('Thêm thất bại')
+                    // showToast('Lỗi khi thêm ', 'error');
+                    console.error('Error:', xhr.responseText, status, error);
+                }
+            });
+        } else {
+            $.ajax({
+                method: 'PUT',
+                url: `${baseUrl}/update/${id}`,
+                data: { name: name, time: time },
+                success: function (response) {
+                    // showToast('Cập nhật thành công!', 'success', 3000);
+                    alert('Cập nhật thành công')
+                    resetForm();
+                    $('#exampleModal').modal('hide');
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    // showToast('Lỗi khi cập nhật ', 'error');
+                    alert('Cập nhật thất bại')
+                    console.error('Error:', xhr.responseText, status, error);
+                }
+            });
+        }
+    });
+
+
+    function showToast(message, type, delay = 3000) {
+        var toastElement = $('#notificationToast');
+        var toastBody = toastElement.find('.toast-body');
+        var toastClass = type === 'success' ? 'bg-success' : 'bg-danger';
+
+        toastBody.text(message);
+        toastElement.removeClass('bg-success bg-danger').addClass(toastClass);
+
+        toastElement.toast({ delay: delay });
+
+        var toast = new bootstrap.Toast(toastElement[0]);
+        toast.show();
+    }
+
+
+
+    function resetForm() {
+        $('#hiddenId').val('');
+        $('#nameWorkShift').val('');
+        $('#time').val('');
+    }
+
+    // xóa ca làm việc
+    $(document).on('click', '#btnDelete', function (e) {
+        e.preventDefault();
+        var id = $(this).data("id");
+        if (confirm("Bạn có chắc chắn muốn xóa không?")) {
+            $.ajax({
+                method: "DELETE",
+                url: `http://localhost:1122/ws/delete/${id}`,
+            })
+                .done(function (msg) {
+                    alert("Đã xóa thành công!");
+                    loadPage(1);
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    console.error("Error:", textStatus, errorThrown);
+                });
+        }
+    });
+
 });

@@ -21,7 +21,7 @@ public class CustomerController {
     CustomerService customerService;
 
     @PostMapping("/create")
-    public ResponseObject<CustomerResponse> create(@RequestBody CustomerRequest request){
+    public ResponseObject<CustomerResponse> create(@ModelAttribute CustomerRequest request){
         CustomerResponse data = customerService.createCustomer(request);
         return ResponseObject.<CustomerResponse>builder()
                 .data(data)
@@ -43,7 +43,7 @@ public class CustomerController {
                 .build();
     }
     @PutMapping("/update/{id}")
-    public ResponseObject<CustomerResponse> update(@PathVariable Long id,@RequestBody CustomerRequest request){
+    public ResponseObject<CustomerResponse> update(@PathVariable Long id,@ModelAttribute CustomerRequest request){
         CustomerResponse data = customerService.updateCustomer(id, request);
         return ResponseObject.<CustomerResponse>builder()
                 .data(data)

@@ -22,7 +22,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -109,5 +111,17 @@ public class MedicineServiceImpl implements MedicineService {
                         })
                         .collect(Collectors.toList()))
                 .build();
+    }
+
+    @Override
+    public List<MedicineResponse> findMedicine(String name) {
+        List<MedicineResponse> list = new ArrayList<>();
+        List<Medicine> medicine = medicineRepository.findByNameMedicine(name);
+        for(Medicine drug : medicine){
+            MedicineResponse response = medicineMapper.toMedicineResponse(drug);
+            response.setNameType(drug.getTypeMedicine().getName());
+            list.add(response);
+        }
+        return list;
     }
 }

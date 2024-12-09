@@ -18,9 +18,10 @@ public class AccountController {
     AccountService accountService;
 
     @PostMapping("/create")
-    public ResponseObject<AccountResponse> create(@RequestBody AccountRequest request){
+    public ResponseObject<AccountResponse> create(@ModelAttribute AccountRequest request){
         AccountResponse data = accountService.createAccount(request);
-        return ResponseObject.<AccountResponse>builder()
+        return ResponseObject.
+                <AccountResponse>builder()
                 .data(data)
                 .code(200)
                 .message("SUCCESS")
@@ -40,7 +41,7 @@ public class AccountController {
                 .build();
     }
     @PutMapping("/update/{idAccount}")
-    public ResponseObject<AccountResponse> update(@PathVariable Long idAccount,@RequestBody AccountRequest request){
+    public ResponseObject<AccountResponse> update(@PathVariable Long idAccount,@ModelAttribute AccountRequest request){
         AccountResponse data = accountService.updateAccount(request,idAccount);
         return ResponseObject.<AccountResponse>builder()
                 .data(data)

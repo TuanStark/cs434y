@@ -39,7 +39,7 @@ $(document).ready(function () {
                             <td>${value.prescriptionMedicine == 1 ? '<i class="fa-solid fa-check" style="color: green;"></i>' : '<i class="fas fa-times text-danger"></i>'}</td>
                             <td>${value.nameType}</td>
                             <td>${value.quantity}</td>
-                            <td>
+                            <td style="display: flex;justify-content: space-between;">
                                 <button class="btn-detail">Xem</button>
                                 <button class="btn-edit">Cập nhật</button>
                                 <button class="btn-delete">Xóa</button>
