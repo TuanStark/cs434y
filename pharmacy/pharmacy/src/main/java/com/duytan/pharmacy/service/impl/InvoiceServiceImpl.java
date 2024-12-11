@@ -44,6 +44,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     InvoiceDetailRepository invoiceDetailRepository;
     DisposalInvoiceService disposalInvoiceService;
     ImportInvoiceService importInvoiceService;
+    SupplierMapper supplierMapper;
 
     @Override
     @Transactional
@@ -78,6 +79,7 @@ public class InvoiceServiceImpl implements InvoiceService {
                 invoice.setTypeInvoice(typeInvoice);
                 importInvoiceService.createImportInvoice(request.getImportInvoiceID(), invoice.getId());
                 ImportVoice importVoice = importInvoiceRepository.findByInvoice_Id(invoice.getId());
+                System.out.println("Invoice Of Import; " + importVoice);
                 if (importVoice == null) {
                     throw new RuntimeException("ImportInvoice not create");
                 }
@@ -144,7 +146,7 @@ public class InvoiceServiceImpl implements InvoiceService {
         response.setNameAccount(invoice.getAccount().getFullName());
         if (response.getTypeInvoice() == 1) {
             ImportResponse importResponse = importInvoiceMapper.toSaleResponse(invoice.getImportVoice());
-            importResponse.setNameSupplier(invoice.getImportVoice().getSupplier().getName());
+            importResponse.setNameSupplier(supplierMapper.toSupplierResponse(invoice.getImportVoice().getSupplier()));
             response.setImportInvoiceID(importResponse);
         } else if (response.getTypeInvoice() == 2) {
             SaleResponse saleResponse = saleInvoiceMapper.toSaleResponse(invoice.getSaleInvoice());

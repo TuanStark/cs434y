@@ -137,8 +137,8 @@ $(document).ready(function () {
             totalPrice: $('#totalPrice').text(),
         };
 
-        localStorage.setItem('invoice', JSON.stringify(invoice));
-        console.log("medicine List:", invoice);
+        //localStorage.setItem('invoice', JSON.stringify(invoice));
+        //console.log("medicine List:", invoice);
     }
 
     function updateTotalPrice(productId, price, quantity) {
@@ -225,7 +225,7 @@ $(document).ready(function () {
                 console.log(response)
                 alert('Thêm hóa đơn bán thành công!');
                 location.reload();
-                localStorage.removeItem('invoice');
+                // localStorage.removeItem('invoice');
             },
             error: function (xhr) {
                 alert('Có lỗi xảy ra: ' + xhr.responseText);

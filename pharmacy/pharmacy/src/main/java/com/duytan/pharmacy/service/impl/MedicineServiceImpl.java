@@ -8,6 +8,7 @@ import com.duytan.pharmacy.entity.Medicine;
 import com.duytan.pharmacy.entity.TypeMedicine;
 import com.duytan.pharmacy.helper.pagination.PageResponse;
 import com.duytan.pharmacy.mapper.MedicineMapper;
+import com.duytan.pharmacy.mapper.TypeMapper;
 import com.duytan.pharmacy.repository.MedicineRepository;
 import com.duytan.pharmacy.repository.TypeMedicineRepository;
 import com.duytan.pharmacy.service.MedicineService;
@@ -22,9 +23,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,6 +35,7 @@ public class MedicineServiceImpl implements MedicineService {
     MedicineRepository medicineRepository;
     MedicineMapper medicineMapper;
     TypeMedicineRepository typeMedicineRepository;
+    TypeMapper typeMapper;
 
     @Override
     @Transactional
@@ -42,10 +43,17 @@ public class MedicineServiceImpl implements MedicineService {
         Medicine medicine = medicineMapper.toMedicine(request);
         TypeMedicine type = typeMedicineRepository.findById(request.getIdType()).orElseThrow(()-> new RuntimeException("Not found type"));
         medicine.setTypeMedicine(type);
+
+        String drugName = medicine.getNameMedicine();
+        String prefix = drugName.substring(0, 3).toUpperCase();
+        // Tạo số thứ tự ngẫu nhiên từ 10 đến 99
+        int randomPart = new Random().nextInt(90) + 10;
+        String drugCode = prefix + randomPart;
+        medicine.setCodeMedicine(drugCode);
         medicineRepository.save(medicine);
 
         MedicineResponse response = medicineMapper.toMedicineResponse(medicine);
-        response.setNameType(medicine.getTypeMedicine().getName());
+        response.setType(typeMapper.toTypeMedicineResponse(medicine.getTypeMedicine()));
 
         return response;
     }
@@ -61,7 +69,7 @@ public class MedicineServiceImpl implements MedicineService {
         medicineRepository.save(medicine);
 
         MedicineResponse response = medicineMapper.toMedicineResponse(medicine);
-        response.setNameType(medicine.getTypeMedicine().getName());
+        response.setType(typeMapper.toTypeMedicineResponse(medicine.getTypeMedicine()));
         return response;
     }
 
@@ -79,7 +87,7 @@ public class MedicineServiceImpl implements MedicineService {
         Medicine medicine = medicineRepository.findById(id)
                 .orElseThrow(()-> new RuntimeException("Not found medicine"));
         MedicineResponse response = medicineMapper.toMedicineResponse(medicine);
-        response.setNameType(medicine.getTypeMedicine().getName());
+        response.setType(typeMapper.toTypeMedicineResponse(medicine.getTypeMedicine()));
         return response;
     }
 
@@ -106,7 +114,7 @@ public class MedicineServiceImpl implements MedicineService {
                 .data(pageData.getContent().stream()
                         .map(medicine -> {
                             MedicineResponse response = medicineMapper.toMedicineResponse(medicine);
-                            response.setNameType(medicine.getTypeMedicine().getName());
+                            response.setType(typeMapper.toTypeMedicineResponse(medicine.getTypeMedicine()));
                             return response;
                         })
                         .collect(Collectors.toList()))
@@ -119,7 +127,7 @@ public class MedicineServiceImpl implements MedicineService {
         List<Medicine> medicine = medicineRepository.findByNameMedicine(name);
         for(Medicine drug : medicine){
             MedicineResponse response = medicineMapper.toMedicineResponse(drug);
-            response.setNameType(drug.getTypeMedicine().getName());
+            response.setType(typeMapper.toTypeMedicineResponse(drug.getTypeMedicine()));
             list.add(response);
         }
         return list;

@@ -36,13 +36,24 @@ public class InvoiceDetailServiceImpl implements InvoiceDetailService {
                 .orElseThrow(()-> new RuntimeException("Not found Medicine"));
         Invoice invoice = invoiceRepository.findById(idInvoice)
                 .orElseThrow(()-> new RuntimeException("Not found Invoice"));
-
         detail.setInvoice(invoice);
         detail.setMedicine(medicine);
         invoiceDetailRepository.save(detail);
-        // update quantity medicine after Invoice
-        medicine.setQuantity(medicine.getQuantity() - request.getQuantity());
-        medicineRepository.save(medicine);
+        if(invoice.getTypeInvoice() == 2){
+            // update quantity medicine after Invoice
+            medicine.setQuantity(medicine.getQuantity() - request.getQuantity());
+            medicineRepository.save(medicine);
+        }else if(invoice.getTypeInvoice() == 1){
+            if(medicine.getQuantity() == 0){
+                medicine.setQuantity(request.getQuantity());
+                medicine.setPrice(request.getPrice());
+                medicine.setUsageTime(request.getExperationDate());
+            }else{
+                medicine.setQuantity(medicine.getQuantity() + request.getQuantity());
+                medicine.setPrice(request.getPrice());
+                medicine.setUsageTime(request.getExperationDate());
+            }
+        }
 
         return invoiceDetailMapper.toInvoiceDetailResponse(detail);
     }

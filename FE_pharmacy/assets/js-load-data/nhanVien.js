@@ -117,7 +117,6 @@ $(document).ready(function () {
     $(document).on('click', '#btnAdd', function (e) {
         $('#title').text('Thêm thông tin nhân viên');
         resetForm();
-        // Đặt các trường nhập liệu ở chế độ 
         $('#fullName1').prop('readonly', false);
         $('#phone').prop('readonly', false);
         $('#dateOfBirth').prop('readonly', false);
@@ -127,7 +126,6 @@ $(document).ready(function () {
         $('#cbSex').prop('disabled', false);
         $('#cbWorkShift').prop('disabled', false);
     })
-
 
     function resetForm() {
         $('#hiddenId').val('');
@@ -140,6 +138,7 @@ $(document).ready(function () {
         $('#cbSex').val('');
         $('#cbWorkShift').val('');
     }
+
     $(document).on('click', '.btnAction', function (e) {
         e.preventDefault();
 

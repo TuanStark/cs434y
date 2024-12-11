@@ -22,6 +22,8 @@ public class Batch {
     private Long id;
     private String codeBatch;
     private int quantity;
+    private double sellingPrice;
+
     private Date importDate;
     private Date productionDate;//ngày sản xuất
     private Date ExperationDate;// hạn sử dụng

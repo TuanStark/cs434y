@@ -24,7 +24,7 @@
     <div class="content">
       <div class="wrap-table">
         <div class="wrap-table_filter">
-          <a href="#" class="btn btn-secondary"><i class="fa-solid fa-chevron-left"></i></a>
+          <a href="#" id="goBackBtn" class="btn btn-secondary"><i class="fa-solid fa-chevron-left"></i></a>
           <h2 class="container-title">Chỉnh sửa thông tin thuốc</h2>
           <div class="container">
             <form class="form">
@@ -32,23 +32,23 @@
                 <div class="col-md-8">
                   <div class="col-auto">
                     <label for="tenThuoc">Tên Thuốc</label>
-                    <input type="text" id="tenThuoc" value="Thuốc Covid ABD">
+                    <input type="text" id="name">
                   </div>
                   <div class="col-auto">
                     <label for="congDung">Công Dụng</label>
-                    <input type="text" id="congDung" value="Thuốc dùng để điều trị COVID">
+                    <input type="text" id="dosage">
                   </div>
                   <div class="row">
                     <div class="col-md-6">
                       <div class="col-auto">
-                        <label for="donViTinh">Đơn vị tính</label>
-                        <input type="text" id="donViTinh" value="Hộp">
+                        <label for="calculatorOfunit">Đơn vị tính</label>
+                        <input type="text" id="calculatorOfunit">
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="col-auto">
                         <label for="quyCachDongGoi">Quy cách đóng gói</label>
-                        <input type="text" id="quyCachDongGoi" value="10 viên/ vỉ - 2 vỉ/hộp">
+                        <input type="text" id="packagingMethod">
                       </div>
                     </div>
                   </div>
@@ -56,51 +56,49 @@
 
                 <div class="col-md-4">
                   <div class="col-auto">
-                    <label for="tenThuoc">Mã thuốc</label>
-                    <input type="text" id="tenThuoc" value="Thuốc Covid ABD" readonly>
+                    <label for="codeMedicine">Mã thuốc</label>
+                    <input type="text" id="codeMedicine" readonly>
                   </div>
                   <div class="col-auto">
-                    <label for="loaiThuoc">Loại Thuốc</label>
-                    <select id="loaiThuoc">
-                      <option>Thuốc điều trị COVID</option>
-                      <option>Thuốc điều trị xương khớp</option>
-                      <option>...</option>
+                    <label for="cbTypeMedicine">Loại Thuốc</label>
+                    <select id="cbTypeMedicine">
+
                     </select>
                   </div>
                   <div class="col-auto">
-                    <label for="soLuong">Số lượng</label>
-                    <input type="number" id="soLuong" value="0" disabled>
+                    <label for="quantity">Số lượng</label>
+                    <input type="number" id="quantity" value="0" disabled>
                   </div>
                 </div>
 
                 <div class="col-md-12">
                   <div class="col-auto">
                     <label for="moTa">Mô tả</label>
-                    <textarea style="width: 90%;" id="moTa">Bao gồm các thành phần: glucozo, ABC 5%</textarea>
+                    <textarea style="width: 90%;" id="description"></textarea>
                   </div>
                 </div>
 
                 <div class="col-md-6">
                   <div class="col-auto">
-                    <label for="tacDungPhu">Tác dụng phụ</label>
-                    <input type="text" id="tacDungPhu" value="Gây ngứa, buồn nôn">
+                    <label for="sideEffects">Tác dụng phụ</label>
+                    <input type="text" id="sideEffects">
                   </div>
                   <div class="col-auto">
-                    <label for="huongDanSuDung">Hướng dẫn sử dụng</label>
-                    <input type="text" id="huongDanSuDung" value="Hòa tan trước khi uống">
+                    <label for="instructionsUse">Hướng dẫn sử dụng</label>
+                    <input type="text" id="instructionsUse">
                   </div>
                 </div>
 
                 <div class="col-md-6">
                   <div class="col-auto">
-                    <label for="lieuLuong">Liều Lượng</label>
-                    <input type="text" id="lieuLuong" value="2 viên / ngày">
+                    <label for="uses">Liều Lượng</label>
+                    <input type="text" id="uses">
                   </div>
                   <div class="col-auto">
-                    <label for="thuocKeDon">Thuốc Kê Đơn</label>
-                    <select id="thuocKeDon">
-                      <option>Không</option>
-                      <option>Có</option>
+                    <label for="cbPrescriptionMedicine">Thuốc Kê Đơn</label>
+                    <select id="cbPrescriptionMedicine">
+                      <option value="0">Không</option>
+                      <option value="1">Có</option>
                     </select>
                   </div>
                 </div>
@@ -108,92 +106,91 @@
 
               <div class="row">
                 <div class="col-md-6">
-                  <a href="#" class="btn yellow">Sửa thông tin thuốc</a>
-                  <a href="#" class="btn red">Hủy</a>
+                  <a href="#" id="btnEdit" class="btn yellow">Sửa thông tin thuốc</a>
                 </div>
                 <div class="col-md-6">
-                  <a href="/NhapThuoc.html" class="btn blue">Nhập thuốc</a>
-                  <a href="#" class="btn teal">Xem Lịch Sử Nhập Thuốc</a>
+                  <a href="#" id="btnImport1" class="btn blue">Nhập thuốc</a>
+                  <a href="#" id="btnView" class="btn teal">Xem Lịch Sử Nhập Thuốc</a>
                 </div>
               </div>
+              <input type="hidden" id="hiddenId">
             </form>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="content">
+    <!-- Nhập thuốc -->
+    <div class="content" id="importMedicine" style="display:none;">
       <div class="wrap-table">
         <div class="wrap-table_filter">
           <h2 class="container-title">Nhập Thuốc</h2>
           <div class="container">
             <form class="form">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="soLuong">Số lượng</label>
-                  <input type="number" id="soLuong" value="1" min="0" step="1">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="col-auto">
+                    <label for="quantity1">Số lượng</label>
+                    <input type="number" id="quantity1" value="1" min="0" step="1">
+                  </div>
+                  <div class="col-auto">
+                    <label for="importPrice">Giá Nhập</label>
+                    <input type="number" id="importPrice">
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label for="giaNhap">Giá Nhập</label>
-                  <input type="number" id="giaNhap" value="1000">
+                <div class="col-md-6">
+                  <div class="col-auto">
+                    <label for="sellingPrice">Giá bán lẻ (VND)</label>
+                    <input type="number" id="sellingPrice">
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label for="giaBanSi">Giá bán sỉ (VND)</label>
-                  <input type="number" id="giaBanSi" value="1000">
-                </div>
-                <div class="form-group">
-                  <label for="giaBanLe">Giá bán lẻ (VND)</label>
-                  <input type="number" id="giaBanLe" value="1000">
-                </div>
-              </div>
 
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="soLo">Số Lô</label>
-                  <input type="text" id="soLo">
+                <div class="col-md-12">
+                  <div class="col-auto">
+                    <label for="codeBatch">Số Lô</label>
+                    <input style="width: 85.5%;" type="text" id="codeBatch">
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label for="ngaySanXuat">Ngày sản xuất</label>
-                  <input type="date" id="ngaySanXuat" value="2023-04-13">
-                </div>
-                <div class="form-group">
-                  <label for="ngayHetHan">Ngày hết hạn</label>
-                  <input type="date" id="ngayHetHan" value="2023-06-13">
-                </div>
-              </div>
 
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="ngayNhapThuoc">Ngày nhập thuốc</label>
-                  <input type="date" id="ngayNhapThuoc" value="2023-05-13">
+                <div class="col-md-6">
+                  <div class="col-auto">
+                    <label for="productionDate">Ngày sản xuất</label>
+                    <input type="date" id="productionDate">
+                  </div>
+                  <div class="col-auto">
+                    <label for="experationDate">Ngày hết hạn</label>
+                    <input type="date" id="experationDate">
+                  </div>
+
                 </div>
-                <div class="form-group">
-                  <label for="nhaCungCap">Nhà Cung Cấp</label>
-                  <select id="nhaCungCap">
-                    <option>Ái Châu</option>
-                    <option>Tâm Bình</option>
-                    <option>...</option>
-                  </select>
+                <div class="col-md-6">
+                  <div class="col-auto">
+                    <label for="importDate">Ngày nhập thuốc</label>
+                    <input type="date" id="importDate">
+                  </div>
+                  <div class="col-auto">
+                    <label for="cbSupplier">Nhà Cung Cấp</label>
+                    <select id="cbSupplier">
+
+                    </select>
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label for="noiSanXuat">Nơi Sản Xuất</label>
-                  <select id="noiSanXuat">
-                    <option>Tổng Công ty Dược Việt Nam</option>
-                    <option>Công ty Cổ phần Dược Hậu Giang</option>
-                    <option>...</option>
-                  </select>
-                </div>
+
               </div>
 
               <div class="form-actions">
-                <button type="button" class="btn red">Hủy</button>
-                <button type="submit" class="btn blue">Nhập thuốc</button>
+                <button type="button" id="btnDestruct" class="btn red">Hủy</button>
+                <button type="submit" id="btnImport" class="btn blue">Nhập thuốc</button>
               </div>
+
+              <input type="hidden" id="hiddenId">
             </form>
           </div>
         </div>
       </div>
     </div>
+
+
   </div>
   </div>
 
@@ -204,6 +201,7 @@
     integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="/assets/js/fragment.js"></script>
+  <script src="/assets/js-load-data/ChinhsuaThongTinthuoc.js"></script>
 </body>
 
 </html>

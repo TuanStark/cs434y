@@ -14,6 +14,10 @@ import java.util.Date;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ImportRequest {
     Date importDate;
+    String codeBatch;
+    Date productionDate;
+    double sellingPrice;
+    Date experationDate;
     Long InvoiceId;
     Long supplierId;
 }

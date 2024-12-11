@@ -21,6 +21,9 @@ public class ImportVoice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date importDate;
+    private String codeBatch;
+    private Date productionDate;
+    private double sellingPrice;
 
     @OneToOne
     @JoinColumn(name = "invoice_id")

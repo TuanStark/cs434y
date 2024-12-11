@@ -5,6 +5,8 @@ import com.duytan.pharmacy.entity.Medicine;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Date;
+
 @Builder
 @Data
 @AllArgsConstructor
@@ -15,6 +17,7 @@ public class InvoiceDetailRequest {
      String unitOfCalculator;
      double price;
      double totalMoney;
+     Date experationDate;
      Long medicineID;
      Long invoiceID;
 }

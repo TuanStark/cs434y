@@ -27,5 +27,5 @@ public class MedicineResponse {
       double price;
       Date usageTime;
       String uses;
-      String nameType;
+      TypeMedicineResponse Type;
 }

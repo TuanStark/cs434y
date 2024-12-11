@@ -43,7 +43,7 @@ public class InvoiceController {
     }
 
     @GetMapping("/getById/{idInvoice}")
-    public ResponseObject<InvoiceResponse> getById(@PathVariable Long idInvoice){
+    public ResponseObject<InvoiceResponse> getById(@RequestParam Long idInvoice){
         InvoiceResponse data = invoiceService.getInvoiceById(idInvoice);
 
         return ResponseObject.<InvoiceResponse>builder()

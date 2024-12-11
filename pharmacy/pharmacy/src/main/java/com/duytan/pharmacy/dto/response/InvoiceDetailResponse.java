@@ -3,6 +3,8 @@ package com.duytan.pharmacy.dto.response;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Date;
+
 @Builder
 @Data
 @AllArgsConstructor
@@ -18,6 +20,7 @@ public class InvoiceDetailResponse {
     String codeMedicine;
     String nameMedicine;
     int prescriptionMedicine;
+    Date experationDate;
     // idInvoice
     Long invoiceID;
 }

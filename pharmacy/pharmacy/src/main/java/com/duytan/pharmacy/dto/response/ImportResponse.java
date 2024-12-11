@@ -16,6 +16,9 @@ import java.util.List;
 public class ImportResponse {
     Long id;
     Date importDate;
-    String nameSupplier;
-    List<BatchResponse> batchResponseList;
+    String codeBatch;
+    Date productionDate;
+    double sellingPrice;
+    SupplierResponse nameSupplier;
+    Long InvoiceId;
 }

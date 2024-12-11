@@ -26,7 +26,7 @@
                 <div class="wrap-table_filter">
                     <input class="find" type="text" placeholder="Nhập tên loại thuốc bạn muốn tìm">
                     <!-- Start PopUp -->
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    <button type="button" id="btnAdd" data-bs-toggle="modal" data-bs-target="#exampleModal"
                         data-bs-whatever="@mdo">Thêm thuốc</button>
 
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -34,7 +34,7 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 style="font-weight: bold;" class="modal-title" id="exampleModalLabel"
+                                    <h5 style="font-weight: bold;" class="modal-title" id="title"
                                         style="color: rgb(70, 67, 235);">Thêm thuốc
                                     </h5>
                                     <button type="button" class="btn-close" style="background-color: red; color: black;"
@@ -44,64 +44,75 @@
                                     <form>
                                         <div class="mb-3">
                                             <label for="recipient-name" class="col-form-label">Tên thuốc:</label>
-                                            <input type="text" class="form-control input-form" id="recipient-name">
+                                            <input type="text" class="form-control input-form" id="name">
                                         </div>
                                         <div class="mb-3">
                                             <label for="message-text" class="col-form-label">Loại thuốc:</label>
-                                            <select class="form-select cb-gender" aria-label="Default select example">
-                                                <option value="1">Dược phẩm</option>
-                                                <option value="2">Kháng sinh</option>
-                                                <option value="3">Khác</option>
+                                            <select class="form-select cb-gender" id="cbTypeMedicine"
+                                                aria-label="Default select example">
+
                                             </select>
                                         </div>
                                         <div class="mb-3">
                                             <label for="recipient-name" class="col-form-label">Liều lượng:</label>
-                                            <input type="text" class="form-control input-form" id="recipient-name">
+                                            <input type="text" class="form-control input-form" id="dosage">
                                         </div>
                                         <div class="mb-3">
                                             <label for="recipient-name" class="col-form-label">Công dụng:</label>
-                                            <input type="text" class="form-control input-form" id="recipient-name">
+                                            <input type="text" class="form-control input-form" id="uses">
                                         </div>
                                         <div class="form-group">
                                             <div class="mb-3">
                                                 <label for="message-text" class="col-form-label ">Thuốc kê
                                                     đơn:</label>
-                                                <select class="form-select input-form"
+                                                <select id="cbPrescriptionMedicine" class="form-select input-form"
                                                     aria-label="Default select example">
                                                     <option value="1">Có</option>
-                                                    <option value="2">Không</option>
+                                                    <option value="0">Không</option>
                                                 </select>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="recipient-name" class="col-form-label">Đơn vị tính:</label>
-                                                <input type="text" class="form-control input-form" id="recipient-name">
+                                                <input type="text" class="form-control input-form"
+                                                    id="calculatorOfunit">
                                             </div>
                                         </div>
                                         <div class="mb-3">
                                             <label for="recipient-name" class="col-form-label">Quy cách đóng
                                                 gói:</label>
-                                            <input type="text" class="form-control input-form" id="recipient-name">
+                                            <input type="text" class="form-control input-form" id="packagingMethod">
                                         </div>
                                         <div class="mb-3">
                                             <label for="recipient-name" class="col-form-label">Tác dụng phụ:</label>
-                                            <input type="text" class="form-control input-form" id="recipient-name">
+                                            <input type="text" class="form-control input-form" id="sideEffects">
                                         </div>
                                         <div class="mb-3">
                                             <label for="recipient-name" class="col-form-label">Hướng dẫn sử
                                                 dụng:</label>
-                                            <input type="text" class="form-control input-form" id="recipient-name">
+                                            <input type="text" class="form-control input-form" id="instructionsUse">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="recipient-name" class="col-form-label">Chú ý:</label>
+                                            <input type="text" class="form-control input-form" id="attention">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="description" class="col-form-label">Thành phần:</label>
+                                            <textarea class="form-control input-form" id="ingredient"
+                                                rows="4"></textarea>
                                         </div>
                                         <div class="mb-3">
                                             <label for="description" class="col-form-label">Mô tả:</label>
                                             <textarea class="form-control input-form" id="description"
                                                 rows="4"></textarea>
                                         </div>
+                                        <input type="hidden" id="hiddenId">
                                     </form>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                <div class="modal-footer" id="btnOption">
+                                    <button type="button" id="btnClose" class="btn btn-secondary"
+                                        data-bs-dismiss="modal"
                                         style="color: white; background-color: red;">Thoát</button>
-                                    <button type="button" class="btn btn-primary"
+                                    <button type="button" class="btn btn-primary" id="btnSave"
                                         style="background-color: aqua; color: black;">Lưu</button>
                                 </div>
                             </div>
@@ -140,6 +151,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"
         integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src=""></script>
 </body>
 
 </html>
